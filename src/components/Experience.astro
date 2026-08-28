@@ -1,0 +1,36 @@
+---
+const items = [
+  {
+    place: 'Ontario Ministry of Education',
+    detail:
+      'LLM-powered summarization API and a Flask REST API for document search and summarization.',
+  },
+  {
+    place: 'Sunnybrook Health Sciences Centre',
+    detail: 'Meteor site work, plus machine learning on research data gathered through the site.',
+  },
+  {
+    place: 'Toromont CAT',
+    detail: 'Data analyst intern.',
+  },
+  {
+    place: 'University of Toronto Scarborough',
+    detail: 'Mathematics and Computer Science.',
+  },
+];
+---
+
+<section class="section wrap" id="experience" aria-labelledby="exp-title">
+  <div class="section-head">
+    <h2 id="exp-title">Experience</h2>
+    <span class="idx">03 / Path</span>
+  </div>
+  <ol class="timeline">
+    {items.map((item) => (
+      <li>
+        <h3>{item.place}</h3>
+        <p>{item.detail}</p>
+      </li>
+    ))}
+  </ol>
+</section>

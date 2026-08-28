@@ -1,0 +1,77 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.webp';
+
+const links = [
+  { href: '#work', label: 'Work' },
+  { href: '#about', label: 'About' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="Ricky Cheuk, home">
+      <Image
+        src={logo}
+        alt=""
+        width={36}
+        height={36}
+        densities={[1, 2]}
+        loading="eager"
+        format="webp"
+      />
+      <span class="brand-name">Ricky Cheuk</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      {links.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </nav>
+    <button
+      class="nav-toggle"
+      type="button"
+      id="nav-toggle"
+      aria-expanded="false"
+      aria-controls="nav-panel"
+      aria-label="Open menu"
+    >
+      <span aria-hidden="true"></span>
+    </button>
+  </div>
+</header>
+<nav class="nav-panel" id="nav-panel" hidden aria-label="Mobile">
+  {links.map((link) => (
+    <a href={link.href}>{link.label}</a>
+  ))}
+</nav>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const panel = document.getElementById('nav-panel');
+  if (toggle instanceof HTMLButtonElement && panel) {
+    const setOpen = (open: boolean) => {
+      const wasOpen = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      panel.hidden = !open;
+      document.body.classList.toggle('nav-lock', open);
+      if (open) {
+        const first = panel.querySelector('a');
+        if (first instanceof HTMLElement) first.focus();
+      } else if (wasOpen) {
+        toggle.focus();
+      }
+    };
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      setOpen(open);
+    });
+    panel.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setOpen(false));
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setOpen(false);
+    });
+  }
+</script>

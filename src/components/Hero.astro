@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import pfp from '../assets/ricky-pfp.webp';
+import GraphField from './GraphField.astro';
+---
+
+<section class="hero wrap" id="top">
+  <div class="hero-grid">
+    <div>
+      <p class="kicker">Software engineer · AI</p>
+      <h1>
+        <span>Ricky</span>
+        <span>Cheuk</span>
+      </h1>
+      <p class="hero-line">Big data, smaller interfaces</p>
+      <p class="hero-copy">
+        I build the kind of AI people actually open — <em>a trip you want to take</em>,
+        a brief before coffee, a GitHub repo you can see.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#work">
+          Selected work <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a
+          class="btn btn-ghost"
+          href="https://github.com/rickycheuk"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          GitHub
+        </a>
+      </div>
+    </div>
+    <div class="portrait-wrap">
+      <GraphField />
+      <Image
+        src={pfp}
+        alt="Ricky Cheuk, smiling, die-cut portrait on black"
+        widths={[320, 480, 720, 960]}
+        sizes="(max-width: 899px) 82vw, 420px"
+        class="portrait"
+        loading="eager"
+        fetchpriority="high"
+        format="webp"
+        quality={85}
+      />
+      <div class="film-frame" aria-hidden="true"><span></span></div>
+      <p class="portrait-meta">Frame 01 · Die-cut still</p>
+    </div>
+  </div>
+</section>

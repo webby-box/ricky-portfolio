@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://webby-box.github.io/ricky-portfolio/sitemap.xml
