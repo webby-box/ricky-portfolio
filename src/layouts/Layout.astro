@@ -35,8 +35,8 @@ const jsonLd = JSON.stringify({
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta name="theme-color" content="#07080a" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#f4ead8" />
+    <meta name="color-scheme" content="light" />
     <meta name="author" content="Ricky Cheuk" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
@@ -56,9 +56,8 @@ const jsonLd = JSON.stringify({
     <link rel="apple-touch-icon" href={`${base}apple-touch-icon.png`} />
     <script type="application/ld+json" is:inline set:html={jsonLd} />
   </head>
-  <body class="grain">
+  <body>
     <a class="skip" href="#main">Skip to content</a>
-    <div class="sprocket" aria-hidden="true"></div>
     <slot />
   </body>
 </html>

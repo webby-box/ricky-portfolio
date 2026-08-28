@@ -7,39 +7,51 @@ import gitweb from '../assets/gitweb.webp';
 
 interface Project {
   name: string;
-  meta: string;
+  code: string;
+  line: string;
   image: ImageMetadata;
   alt: string;
-  body: string;
-  links: { href: string; label: string }[];
+  tone: 'lime' | 'magenta' | 'ink';
+  knock: boolean;
+  className: string;
+  links: { href: string; label: string; sub?: boolean }[];
 }
 
 const projects: Project[] = [
   {
     name: 'Voyas AI',
-    meta: 'AI travel companion',
+    code: 'A',
+    line: 'AI travel companion',
     image: voyas,
     alt: 'Voyas AI logo, a gradient letter V with a sticker outline',
-    body: 'Personalized itineraries, local recommendations, and smart scheduling — trip planning that behaves like a companion, not a spreadsheet.',
-    links: [{ href: 'https://voyas.ai', label: 'voyas.ai' }],
+    tone: 'lime',
+    knock: true,
+    className: 'poster-voyas',
+    links: [{ href: 'https://voyas.ai', label: 'Open voyas.ai' }],
   },
   {
     name: 'Noozz AI',
-    meta: 'Morning intelligence brief',
+    code: 'B',
+    line: 'Morning intelligence brief',
     image: noozz,
     alt: 'Noozz AI logo, a geometric white N on a blue rounded square',
-    body: 'A personalized AI news brief for the start of the day.',
-    links: [{ href: 'https://noozz.ai', label: 'noozz.ai' }],
+    tone: 'magenta',
+    knock: false,
+    className: 'poster-noozz',
+    links: [{ href: 'https://noozz.ai', label: 'Open noozz.ai' }],
   },
   {
     name: 'gitweb',
-    meta: 'Next.js · React Flow · Framer Motion · OpenAI',
+    code: 'C',
+    line: 'A GitHub repo you can see',
     image: gitweb,
     alt: 'gitweb mark: three connected nodes on a grainy dark field',
-    body: 'Turns a GitHub repository into an interactive visual graph — the file tree, finally as a system you can actually look at.',
+    tone: 'ink',
+    knock: true,
+    className: 'poster-gitweb',
     links: [
-      { href: 'https://gitweb.dev', label: 'gitweb.dev' },
-      { href: 'https://github.com/rickycheuk/gitweb', label: 'GitHub' },
+      { href: 'https://gitweb.dev', label: 'Open gitweb.dev' },
+      { href: 'https://github.com/rickycheuk/gitweb', label: 'Source on GitHub', sub: true },
     ],
   },
 ];
@@ -63,46 +75,53 @@ const experiments = [
 ];
 ---
 
-<section class="section wrap" id="work">
-  <div class="section-head">
-    <h2>Selected work</h2>
-    <span class="idx">01 / Work</span>
-  </div>
-  <div class="work-list">
+<section class="work" id="work">
+  <h2 class="work-banner">Work</h2>
+  <div class="posters">
     {projects.map((project) => (
-      <article class="work-card">
-        <div class="work-mark">
-          <Image
-            src={project.image}
-            alt={project.alt}
-            widths={[168, 336, 500]}
-            sizes="(max-width: 719px) min(100vw - 2rem, 520px), 168px"
-            format="webp"
-          />
+      <article class:list={['poster', `poster-${project.tone}`, project.className]}>
+        <div class="poster-top">
+          <span class="poster-code">{project.code}</span>
+          <div class:list={['stamp', project.knock && 'stamp-knock']}>
+            <Image
+              src={project.image}
+              alt={project.alt}
+              widths={[96, 160, 240]}
+              sizes="100px"
+              format="webp"
+            />
+          </div>
         </div>
-        <div class="work-body">
-          <p class="work-meta">{project.meta}</p>
-          <h3>{project.name}</h3>
-          <p>{project.body}</p>
-          <p class="work-go">
-            {project.links.map((link) => (
-              <a href={link.href} rel="noopener noreferrer" target="_blank">
-                {link.label} <span aria-hidden="true">↗</span>
-              </a>
-            ))}
-          </p>
-        </div>
+        <h3>{project.name}</h3>
+        <p class="poster-line">{project.line}</p>
+        <p class="poster-go">
+          {project.links.map((link) => (
+            <a
+              class:list={[link.sub && 'sub']}
+              href={link.href}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              {link.label} ↗
+            </a>
+          ))}
+        </p>
       </article>
     ))}
   </div>
 
-  <p class="kicker" style="margin-top: 2.5rem;">Also on GitHub</p>
-  <div class="experiments">
-    {experiments.map((item) => (
-      <a class="exp" href={item.href} rel="noopener noreferrer" target="_blank">
-        <strong>{item.name}</strong>
-        <span>{item.body}</span>
-      </a>
-    ))}
+  <div class="bench">
+    <h3>Also on GitHub</h3>
+    <p class="bench-lead">Loose prints. Same shop.</p>
+    <ul class="bench-list">
+      {experiments.map((item) => (
+        <li>
+          <a href={item.href} rel="noopener noreferrer" target="_blank">
+            <strong>{item.name}</strong>
+            <span>{item.body}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
   </div>
 </section>

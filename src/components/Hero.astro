@@ -1,51 +1,44 @@
 ---
 import { Image } from 'astro:assets';
 import pfp from '../assets/ricky-pfp.webp';
-import GraphField from './GraphField.astro';
 ---
 
-<section class="hero wrap" id="top">
-  <div class="hero-grid">
-    <div>
-      <p class="kicker">Software engineer · AI</p>
-      <h1>
-        <span>Ricky</span>
-        <span>Cheuk</span>
-      </h1>
-      <p class="hero-line">Big data, smaller interfaces</p>
-      <p class="hero-copy">
-        I build the kind of AI people actually open — <em>a trip you want to take</em>,
-        a brief before coffee, a GitHub repo you can see.
-      </p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="#work">
-          Selected work <span class="arrow" aria-hidden="true">→</span>
-        </a>
-        <a
-          class="btn btn-ghost"
-          href="https://github.com/rickycheuk"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-    <div class="portrait-wrap">
-      <GraphField />
+<section class="hero" id="top">
+  <div class="slash" aria-hidden="true"></div>
+  <div class="hero-figure">
+    <div class="sticker">
       <Image
         src={pfp}
-        alt="Ricky Cheuk, smiling, die-cut portrait on black"
-        widths={[320, 480, 720, 960]}
-        sizes="(max-width: 899px) 82vw, 420px"
-        class="portrait"
+        alt="Ricky Cheuk, smiling, die-cut portrait"
+        widths={[280, 420, 640, 880]}
+        sizes="(max-width: 767px) 64vw, (max-width: 1199px) 38vw, 34vw"
+        class="sticker-img"
         loading="eager"
         fetchpriority="high"
         format="webp"
         quality={85}
       />
-      <div class="film-frame" aria-hidden="true"><span></span></div>
-      <p class="portrait-meta">Frame 01 · Die-cut still</p>
     </div>
+    <p class="hero-role">software engineer · AI</p>
+    <h1>
+      <span>Ricky</span>
+      <span>Cheuk</span>
+    </h1>
+    <p class="hero-deck">Big data, smaller interfaces</p>
+  </div>
+  <p class="hero-copy">
+    I build the kind of AI people actually open — <em>a trip you want to take</em>,
+    a brief before coffee, a GitHub repo you can see.
+  </p>
+  <div class="cta-row">
+    <a class="btn btn-lime" href="#work">Selected work →</a>
+    <a
+      class="btn btn-ink"
+      href="https://github.com/rickycheuk"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      GitHub
+    </a>
   </div>
 </section>

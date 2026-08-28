@@ -6,7 +6,7 @@ Personal site for Ricky Cheuk (https://rickycheuk.com): software engineer workin
 
 - Astro (static output)
 - TypeScript
-- Tailwind CSS v4 (design tokens and layout; custom CSS for the film / node-graph look)
+- Tailwind CSS v4 (design tokens and layout; custom CSS for the pocket-zine / night-print look)
 - Self-hosted fonts: Bricolage Grotesque, Newsreader, IBM Plex Mono
 
 ## Requirements
