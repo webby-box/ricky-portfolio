@@ -2,12 +2,13 @@
 
 Personal site for Ricky Cheuk (https://rickycheuk.com): software engineer working in AI and big data. Static Astro plus TypeScript. No backend, no auth.
 
+One full-screen composition: cycling GIF background, portrait and name, two glass docks (GitHub / LinkedIn / Change Background, then Voyas AI / Noozz AI / gitweb.dev).
+
 ## Stack
 
 - Astro (static output)
 - TypeScript
-- Tailwind CSS v4 (design tokens and layout; custom CSS for the pocket-zine / night-print look)
-- Self-hosted fonts: Bricolage Grotesque, Newsreader, IBM Plex Mono
+- Tailwind CSS v4 (preflight) plus a single composition stylesheet
 
 ## Requirements
 
@@ -28,14 +29,12 @@ Preview the production build with the package script named preview.
 ## Layout
 
 src/assets — portraits, logo, project marks (optimized; not hotlinked)
-src/components — Nav, Hero, Work, About, Experience, Footer
 src/layouts — document shell, SEO, Open Graph
 src/pages/index.astro — single page
-src/styles/global.css
-public/ — favicon, apple-touch icon, og.jpg, robots.txt, sitemap.xml
+src/styles/global.css — the composition
+public/ — favicon, apple-touch icon, og.jpg, robots.txt, sitemap.xml, .nojekyll
+public/bg/ — cycling background GIFs (glare, road, box, ripple)
 
 ## Deploy
 
-Any static host. Publish the dist/ folder after a production build. Keep the site URL in astro.config.mjs in sync with the public domain.
-
-Invoke those scripts through the Node package manager. The production output directory is dist/.
+GitHub Pages from dist/. Site URL and base path live in astro.config.mjs (`https://webby-box.github.io` / `/ricky-portfolio`). public/.nojekyll is required so Pages does not hide the `_astro` folder.
