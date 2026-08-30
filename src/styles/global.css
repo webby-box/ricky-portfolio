@@ -2,11 +2,11 @@
 
 :root {
   color-scheme: dark;
-  --stage: #0b1c3a;
-  --fg: #f4eee3;
-  --mute: rgb(244 238 227 / 0.62);
-  --dim: rgb(244 238 227 / 0.38);
-  --signal: #ff4b3a;
+  --stage: #16110c;
+  --fg: #f3ead8;
+  --mute: rgb(243 234 216 / 0.62);
+  --dim: rgb(243 234 216 / 0.38);
+  --signal: #c47a32;
   --serif: "Newsreader Variable", "Newsreader", "Times New Roman", Times, serif;
   --sans: "Outfit Variable", "Outfit", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -100,7 +100,7 @@ a {
   height: 100%;
   max-width: none;
   object-fit: cover;
-  object-position: center bottom;
+  object-position: left bottom;
 }
 
 .world::after {
@@ -109,15 +109,33 @@ a {
   left: 0;
   right: 0;
   top: 0;
-  height: 32%;
+  height: 28%;
   z-index: 1;
   pointer-events: none;
   background: linear-gradient(
     180deg,
     var(--stage) 0%,
-    rgb(11 28 58 / 0.58) 46%,
+    rgb(22 17 12 / 0.55) 42%,
     transparent 100%
   );
+}
+
+.horizon {
+  position: absolute;
+  z-index: 1;
+  left: 52%;
+  bottom: 22%;
+  width: min(48vw, 28rem);
+  height: min(28vh, 16rem);
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgb(196 122 50 / 0.38),
+    rgb(196 122 50 / 0.1) 42%,
+    transparent 72%
+  );
+  mix-blend-mode: screen;
+  animation: glow-pulse 8s ease-in-out infinite;
 }
 
 .grain {
@@ -211,6 +229,16 @@ a {
   color: var(--mute);
 }
 
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.42;
+  }
+  50% {
+    opacity: 0.92;
+  }
+}
+
 @keyframes grain-shift {
   from {
     background-position: 0 0;
@@ -287,12 +315,22 @@ a {
     bottom: 0;
     top: auto;
     flex: none;
-    height: 64%;
+    height: 72%;
+  }
+
+  .horizon {
+    left: 48%;
+    bottom: 16%;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .grain {
+  .grain,
+  .horizon {
     animation: none;
+  }
+
+  .horizon {
+    opacity: 0.55;
   }
 }
