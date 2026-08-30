@@ -1,13 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import hero from '../assets/art/hero.png';
-import portrait from '../assets/art/portrait.png';
+import portrait from '../assets/ricky-pfp.webp';
 ---
 
 <Layout>
   <div class="stage">
-    <div class="horizon" aria-hidden="true"></div>
     <div class="grain" aria-hidden="true"></div>
 
     <header class="mast">
@@ -17,17 +15,6 @@ import portrait from '../assets/art/portrait.png';
         <a href="https://gitweb.dev" target="_blank" rel="noreferrer">gitweb</a>
       </nav>
 
-      <div class="brand">
-        <img
-          class="stamp"
-          src={portrait.src}
-          alt=""
-          width={portrait.width}
-          height={portrait.height}
-        />
-        <p class="wordmark">Ricky Cheuk</p>
-      </div>
-
       <nav class="social" aria-label="Social">
         <a href="https://github.com/rickycheuk" target="_blank" rel="noreferrer">GitHub</a>
         <a href="https://www.linkedin.com/in/rickycheuk/" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -35,14 +22,14 @@ import portrait from '../assets/art/portrait.png';
     </header>
 
     <div class="copy">
-      <h1 class="headline">Big data, smaller interfaces.</h1>
+      <h1 class="headline">Ricky Cheuk</h1>
       <p class="role">software · AI</p>
     </div>
 
     <div class="world" aria-hidden="true">
       <Image
         class="world-img"
-        src={hero}
+        src={portrait}
         alt=""
         widths={[720, 1080, 1536, 2160]}
         sizes="100vw"

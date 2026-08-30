@@ -1,6 +1,5 @@
 ---
 import '@fontsource-variable/newsreader/wght.css';
-import '@fontsource-variable/newsreader/wght-italic.css';
 import '@fontsource-variable/outfit/wght.css';
 import '../styles/global.css';
 
@@ -10,9 +9,7 @@ interface Props {
 }
 
 const title = Astro.props.title ?? 'Ricky Cheuk';
-const description =
-  Astro.props.description ??
-  'Ricky Cheuk — software engineer · AI. Big data, smaller interfaces.';
+const description = Astro.props.description ?? 'Ricky Cheuk — software engineer · AI';
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const base = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
@@ -26,7 +23,7 @@ const ogImage = new URL(base + 'og.jpg', Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#0c1810" />
+    <meta name="theme-color" content="#1a1410" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content="Ricky,Ricky Cheuk,Software Engineer" />
