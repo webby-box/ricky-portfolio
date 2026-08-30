@@ -10,161 +10,87 @@ const base = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : import.meta.env.BASE_URL + '/';
 
-const backgrounds = [
+const scenes = [
   `${base}bg/glare-bg.gif`,
   `${base}bg/road-bg.gif`,
   `${base}bg/box-bg.gif`,
   `${base}bg/ripple-bg.gif`,
 ];
+
+const works = [
+  { href: 'https://voyas.ai', label: 'Voyas', mark: voyas },
+  { href: 'https://noozz.ai', label: 'Noozz', mark: noozz },
+  { href: 'https://gitweb.dev', label: 'gitweb', mark: gitweb },
+];
 ---
 
 <Layout>
-  <div class="bg" aria-hidden="true">
-    {
-      backgrounds.map((src, i) =>
-        i === 0 ? (
-          <img
-            class="is-active"
-            data-bg
-            src={src}
-            alt=""
-            width="250"
-            height="250"
-            fetchpriority="high"
-          />
-        ) : (
-          <img data-bg data-src={src} alt="" width="250" height="250" hidden />
-        ),
-      )
-    }
+  <div class="stage">
+    <div class="scene" aria-hidden="true">
+      <img
+        class="gif"
+        data-bg
+        data-scenes={scenes.join('|')}
+        src={scenes[0]}
+        alt=""
+        width="500"
+        height="500"
+        fetchpriority="high"
+      />
+      <div class="shade"></div>
+    </div>
+
+    <a class="sig" href={base} aria-label="Ricky Cheuk">
+      <img src={logo.src} alt="" width="169" height="169" />
+    </a>
+
+    <button class="cycle" type="button" data-cycle aria-label="Next scene, 1 of 4">
+      <span class="cycle-word">next scene</span>
+      <span class="cycle-count"><span data-index>01</span> / 04</span>
+    </button>
+
+    <img
+      class="standee"
+      src={pfp.src}
+      alt="Ricky Cheuk"
+      width="500"
+      height="511"
+      fetchpriority="high"
+    />
+
+    <div class="credit">
+      <p class="role">Software engineer</p>
+      <h1 class="name">Ricky Cheuk</h1>
+      <nav class="works" aria-label="Projects">
+        {
+          works.map((work) => (
+            <a class="work" href={work.href} target="_blank" rel="noreferrer">
+              <img class="stamp" src={work.mark.src} alt="" width="32" height="32" />
+              <span>{work.label}</span>
+            </a>
+          ))
+        }
+      </nav>
+      <p class="out">
+        <a href="https://github.com/rickycheuk" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/rickycheuk/" target="_blank" rel="noreferrer">LinkedIn</a>
+      </p>
+    </div>
   </div>
 
-  <main class="stage">
-    <div class="logo-wrap fade-up" style="animation-delay: 0.15s">
-      <a href={base} aria-label="Ricky Cheuk">
-        <img class="logo" src={logo.src} alt="Ricky Logo" width="169" height="169" fetchpriority="high" />
-      </a>
-    </div>
-
-    <div class="cluster fade-up" style="animation-delay: 0.25s">
-      <div class="identity">
-        <div class="portrait-wrap">
-          <img
-            class="portrait"
-            src={pfp.src}
-            alt="Ricky Pfp"
-            width="500"
-            height="500"
-            fetchpriority="high"
-          />
-        </div>
-        <div class="name-block">
-          <div class="name">
-            <span>Ricky</span>
-            <span>Cheuk</span>
-          </div>
-          <div class="role-block">
-            <span class="role">Software Engineer</span>
-            <div class="tags">
-              <span>AI</span>
-              <span>•</span>
-              <span>Big Data</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="docks">
-        <div class="dock">
-          <a
-            class="tile"
-            href="https://github.com/rickycheuk"
-            target="_blank"
-            rel="noreferrer"
-            title="GitHub"
-            aria-label="GitHub"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-              <path d="M9 18c-4.51 2-5-2-7-2"></path>
-            </svg>
-          </a>
-          <a
-            class="tile"
-            href="https://www.linkedin.com/in/rickycheuk/"
-            target="_blank"
-            rel="noreferrer"
-            title="Linkedin"
-            aria-label="Linkedin"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-              <rect width="4" height="12" x="2" y="9"></rect>
-              <circle cx="4" cy="4" r="2"></circle>
-            </svg>
-          </a>
-          <button class="tile" type="button" data-cycle title="Change Background" aria-label="Change Background">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
-              <path d="M21 3v5h-5"></path>
-              <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
-              <path d="M8 16H3v5"></path>
-            </svg>
-          </button>
-        </div>
-
-        <div class="dock">
-          <a
-            class="tile"
-            href="https://voyas.ai"
-            target="_blank"
-            rel="noreferrer"
-            title="Voyas AI"
-            aria-label="Voyas AI"
-          >
-            <img class="mark" src={voyas.src} alt="Voyas AI" width="69" height="69" />
-          </a>
-          <a
-            class="tile"
-            href="https://noozz.ai"
-            target="_blank"
-            rel="noreferrer"
-            title="Noozz AI"
-            aria-label="Noozz AI"
-          >
-            <img class="mark mark-noozz" src={noozz.src} alt="Noozz AI" width="69" height="69" />
-          </a>
-          <a
-            class="tile"
-            href="https://gitweb.dev"
-            target="_blank"
-            rel="noreferrer"
-            title="gitweb.dev more"
-            aria-label="gitweb.dev more"
-          >
-            <img class="mark" src={gitweb.src} alt="gitweb.dev" width="69" height="69" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </main>
-
-<script>
-  const frames = [...document.querySelectorAll<HTMLImageElement>('[data-bg]')];
-  let index = 0;
-
-  document.querySelector('[data-cycle]')?.addEventListener('click', () => {
-    const prev = frames[index];
-    index = (index + 1) % frames.length;
-    const next = frames[index];
-    if (!next.getAttribute('src')) {
-      const src = next.dataset.src;
-      if (src) next.src = src;
+  <script>
+    const gif = document.querySelector<HTMLImageElement>('[data-bg]');
+    const btn = document.querySelector<HTMLButtonElement>('[data-cycle]');
+    const idx = document.querySelector('[data-index]');
+    if (gif && btn) {
+      const list = (gif.dataset.scenes ?? '').split('|').filter(Boolean);
+      let i = 0;
+      btn.addEventListener('click', () => {
+        i = (i + 1) % list.length;
+        gif.src = list[i];
+        if (idx) idx.textContent = String(i + 1).padStart(2, '0');
+        btn.setAttribute('aria-label', `Next scene, ${i + 1} of ${list.length}`);
+      });
     }
-    prev.hidden = true;
-    prev.classList.remove('is-active');
-    next.hidden = false;
-    next.classList.add('is-active');
-  });
-</script>
+  </script>
 </Layout>
