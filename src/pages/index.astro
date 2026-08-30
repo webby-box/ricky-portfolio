@@ -25,48 +25,55 @@ const works = [
 ---
 
 <Layout>
-  <div class="poster">
-    <p class="mark-word" aria-hidden="true">RICKY</p>
-    <p class="mark-stack" aria-hidden="true">
-      <span>R</span>
-      <span>I</span>
-      <span>C</span>
-      <span>K</span>
-      <span>Y</span>
-    </p>
+  <div class="stage">
     <h1 class="sr-only">Ricky Cheuk</h1>
 
-    <div class="campaign">
-      <button
-        class="still"
-        type="button"
-        data-cycle
-        aria-label="Cycle scene, 1 of 4"
-      >
-        <img
-          class="gif"
-          data-bg
-          data-scenes={scenes.join('|')}
-          src={scenes[0]}
-          alt=""
-          width="500"
-          height="500"
-          fetchpriority="high"
-        />
-        <span class="idx" data-index>01</span>
-      </button>
+    <button
+      class="footage"
+      type="button"
+      data-cycle
+      aria-label="Cycle scene, 1 of 4"
+    >
       <img
-        class="standee"
-        src={pfp.src}
+        class="gif"
+        data-bg
+        data-scenes={scenes.join('|')}
+        src={scenes[0]}
         alt=""
-        width="500"
-        height="511"
+        width="1920"
+        height="1080"
         fetchpriority="high"
       />
-    </div>
+    </button>
 
-    <aside class="stamp">
-      <p class="role">software · AI</p>
+    <div class="scrim" aria-hidden="true"></div>
+
+    <img
+      class="standee"
+      src={pfp.src}
+      alt=""
+      width="500"
+      height="511"
+      fetchpriority="high"
+    />
+
+    <header class="slate">
+      <div class="brand">
+        <img class="logo" src={logo.src} alt="" width="22" height="22" />
+        <p class="ident">
+          <span class="who">Ricky Cheuk</span>
+          <span class="dot" aria-hidden="true">·</span>
+          <span class="job">SOFTWARE · AI</span>
+        </p>
+        <span class="idx" data-index>01</span>
+      </div>
+      <nav class="out" aria-label="Social">
+        <a href="https://github.com/rickycheuk" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/rickycheuk/" target="_blank" rel="noreferrer">LinkedIn</a>
+      </nav>
+    </header>
+
+    <footer class="endcard">
       <p class="line">Big data, smaller interfaces</p>
       <nav class="works" aria-label="Projects">
         {
@@ -78,15 +85,7 @@ const works = [
           ))
         }
       </nav>
-      <p class="out">
-        <a href="https://github.com/rickycheuk" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/rickycheuk/" target="_blank" rel="noreferrer">LinkedIn</a>
-      </p>
-    </aside>
-
-    <a class="sig" href={base} aria-label="Ricky Cheuk">
-      <img src={logo.src} alt="" width="169" height="169" />
-    </a>
+    </footer>
   </div>
 
   <script>

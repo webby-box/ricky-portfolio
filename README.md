@@ -2,14 +2,14 @@
 
 Personal site for Ricky Cheuk (https://rickycheuk.com): software engineer · AI. Static Astro plus TypeScript. No backend, no auth.
 
-The page is a black-and-white campaign poster, not a site chrome. A stacked (desktop) / cropped-horizontal (mobile) RICKY wordmark occupies the frame as the brand mark. A single square still holds the looping GIF as a product photograph, with the die-cut portrait standing in front of it, cropped by the square. A lookbook stamp at the bottom lists Voyas, Noozz, gitweb, GitHub, and LinkedIn. Click the square to cycle glare → road → box → ripple. Only the active GIF is loaded.
+The page is one locked 100svh frame of film titles over footage. A full-bleed cycling GIF (glare, road, box, ripple) is the world; a light bottom-and-top scrim keeps small IBM Plex Mono credits readable without burying the image. The die-cut portrait stands in the scene. Top slate: logo, Ricky Cheuk · software · AI, GitHub and LinkedIn. Bottom credit line: Voyas, Noozz, gitweb. Tap the footage to cycle scenes. Only the active GIF is loaded.
 
 ## Stack
 
 - Astro (static output)
 - TypeScript
 - Tailwind CSS v4 (preflight) plus a single composition stylesheet
-- Syne (variable, self-hosted)
+- IBM Plex Mono (credits) and Newsreader (name, small)
 
 ## Requirements
 
