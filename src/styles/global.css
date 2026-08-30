@@ -100,7 +100,7 @@ a {
   height: 100%;
   max-width: none;
   object-fit: cover;
-  object-position: left bottom;
+  object-position: 32% 88%;
 }
 
 .world::after {
@@ -109,13 +109,13 @@ a {
   left: 0;
   right: 0;
   top: 0;
-  height: 28%;
+  height: 18%;
   z-index: 1;
   pointer-events: none;
   background: linear-gradient(
     180deg,
     var(--stage) 0%,
-    rgb(22 17 12 / 0.55) 42%,
+    rgb(22 17 12 / 0.4) 40%,
     transparent 100%
   );
 }
@@ -249,6 +249,13 @@ a {
 }
 
 @media (max-width: 719px) {
+  .world-img,
+  .world img,
+  .world picture,
+  .world picture img {
+    object-position: 42% 78%;
+  }
+
   .works a,
   .social a {
     padding: 0 0.32rem;
@@ -315,7 +322,7 @@ a {
     bottom: 0;
     top: auto;
     flex: none;
-    height: 72%;
+    height: 82%;
   }
 
   .horizon {
