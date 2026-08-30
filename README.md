@@ -2,14 +2,14 @@
 
 Personal site for Ricky Cheuk (https://rickycheuk.com): software engineer · AI. Static Astro plus TypeScript. No backend, no auth.
 
-The page is one locked 100svh frame of film titles over footage. A full-bleed cycling GIF (glare, road, box, ripple) is the world; a light bottom-and-top scrim keeps small IBM Plex Mono credits readable without burying the image. The die-cut portrait stands in the scene. Top slate: logo, Ricky Cheuk · software · AI, GitHub and LinkedIn. Bottom credit line: Voyas, Noozz, gitweb. Tap the footage to cycle scenes. Only the active GIF is loaded.
+The page is a locked 100svh living interface: a full-viewport generative data field (canvas points and proximity lines over a CSS lattice, grain, and scan) is the atmosphere. Identity sits on it as a HUD plate — Newsreader name, role, tagline, a small cropped photograph, and Voyas / Noozz / gitweb as an instrument list — not film credits, not a poster wordmark, and not reused GIF footage.
 
 ## Stack
 
 - Astro (static output)
 - TypeScript
 - Tailwind CSS v4 (preflight) plus a single composition stylesheet
-- IBM Plex Mono (credits) and Newsreader (name, small)
+- IBM Plex Mono (UI) and Newsreader (name)
 
 ## Requirements
 
@@ -31,10 +31,9 @@ Preview the production build with the package script named preview.
 
 src/assets — portrait, logo, project marks (optimized; not hotlinked)
 src/layouts — document shell, SEO, Open Graph
-src/pages/index.astro — single page
+src/pages/index.astro — single page and field script
 src/styles/global.css — the composition
 public/ — favicon, apple-touch icon, og.jpg, robots.txt, sitemap.xml, .nojekyll
-public/bg/ — scene GIFs (glare, road, box, ripple)
 
 ## Deploy
 

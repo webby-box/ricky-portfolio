@@ -10,13 +10,14 @@ interface Props {
 }
 
 const title = Astro.props.title ?? 'Ricky Cheuk';
-const description = Astro.props.description ?? 'Ricky Cheuk — software engineer · AI. Big data, smaller interfaces.';
+const description =
+  Astro.props.description ??
+  'Ricky Cheuk — software engineer · AI. Big data, smaller interfaces.';
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const base = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : import.meta.env.BASE_URL + '/';
 const ogImage = new URL(base + 'og.jpg', Astro.site);
-const titleGif = base + 'bg/glare-bg.gif';
 ---
 
 <!doctype html>
@@ -25,12 +26,11 @@ const titleGif = base + 'bg/glare-bg.gif';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="black" />
+    <meta name="theme-color" content="#090b12" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content="Ricky,Ricky Cheuk,Software Engineer" />
     <link rel="canonical" href={canonical} />
-    <link rel="preload" as="image" href={titleGif} fetchpriority="high" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

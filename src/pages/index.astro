@@ -6,17 +6,6 @@ import voyas from '../assets/voyas.webp';
 import noozz from '../assets/noozz.webp';
 import gitweb from '../assets/gitweb.webp';
 
-const base = import.meta.env.BASE_URL.endsWith('/')
-  ? import.meta.env.BASE_URL
-  : import.meta.env.BASE_URL + '/';
-
-const scenes = [
-  `${base}bg/glare-bg.gif`,
-  `${base}bg/road-bg.gif`,
-  `${base}bg/box-bg.gif`,
-  `${base}bg/ripple-bg.gif`,
-];
-
 const works = [
   { href: 'https://voyas.ai', label: 'Voyas', mark: voyas },
   { href: 'https://noozz.ai', label: 'Noozz', mark: noozz },
@@ -26,81 +15,225 @@ const works = [
 
 <Layout>
   <div class="stage">
-    <h1 class="sr-only">Ricky Cheuk</h1>
+    <canvas class="field" data-field aria-hidden="true"></canvas>
+    <div class="wash" aria-hidden="true"></div>
+    <div class="lattice" aria-hidden="true"></div>
+    <div class="scan" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
 
-    <button
-      class="footage"
-      type="button"
-      data-cycle
-      aria-label="Cycle scene, 1 of 4"
-    >
-      <img
-        class="gif"
-        data-bg
-        data-scenes={scenes.join('|')}
-        src={scenes[0]}
-        alt=""
-        width="1920"
-        height="1080"
-        fetchpriority="high"
-      />
-    </button>
+    <div class="frame" aria-hidden="true">
+      <span class="corner nw"></span>
+      <span class="corner ne"></span>
+      <span class="corner sw"></span>
+      <span class="corner se"></span>
+    </div>
 
-    <div class="scrim" aria-hidden="true"></div>
+    <p class="readout" aria-hidden="true">field // live</p>
 
-    <img
-      class="standee"
-      src={pfp.src}
-      alt=""
-      width="500"
-      height="511"
-      fetchpriority="high"
-    />
+    <nav class="social" aria-label="Social">
+      <a href="https://github.com/rickycheuk" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/rickycheuk/" target="_blank" rel="noreferrer">LinkedIn</a>
+    </nav>
 
-    <header class="slate">
-      <div class="brand">
-        <img class="logo" src={logo.src} alt="" width="22" height="22" />
-        <p class="ident">
-          <span class="who">Ricky Cheuk</span>
-          <span class="dot" aria-hidden="true">·</span>
-          <span class="job">SOFTWARE · AI</span>
-        </p>
-        <span class="idx" data-index>01</span>
+    <header class="plate">
+      <div class="id">
+        <div class="photo">
+          <img
+            src={pfp.src}
+            alt="Ricky Cheuk"
+            width="500"
+            height="511"
+          />
+        </div>
+        <div class="who">
+          <img class="glyph" src={logo.src} alt="" width="16" height="16" />
+          <h1 class="name">Ricky Cheuk</h1>
+          <p class="role">software · AI</p>
+          <p class="line">Big data, smaller interfaces</p>
+        </div>
       </div>
-      <nav class="out" aria-label="Social">
-        <a href="https://github.com/rickycheuk" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/rickycheuk/" target="_blank" rel="noreferrer">LinkedIn</a>
-      </nav>
-    </header>
 
-    <footer class="endcard">
-      <p class="line">Big data, smaller interfaces</p>
       <nav class="works" aria-label="Projects">
         {
           works.map((work) => (
             <a class="work" href={work.href} target="_blank" rel="noreferrer">
-              <img class="mark" src={work.mark.src} alt="" width="18" height="18" />
+              <img class="mark" src={work.mark.src} alt="" width="16" height="16" />
               <span>{work.label}</span>
             </a>
           ))
         }
       </nav>
-    </footer>
+    </header>
   </div>
 
   <script>
-    const gif = document.querySelector<HTMLImageElement>('[data-bg]');
-    const btn = document.querySelector<HTMLButtonElement>('[data-cycle]');
-    const idx = document.querySelector('[data-index]');
-    if (gif && btn) {
-      const list = (gif.dataset.scenes ?? '').split('|').filter(Boolean);
-      let i = 0;
-      btn.addEventListener('click', () => {
-        i = (i + 1) % list.length;
-        gif.src = list[i];
-        if (idx) idx.textContent = String(i + 1).padStart(2, '0');
-        btn.setAttribute('aria-label', `Cycle scene, ${i + 1} of ${list.length}`);
+    const canvas = document.querySelector<HTMLCanvasElement>('[data-field]');
+    const stage = document.querySelector<HTMLElement>('.stage');
+    const reduceMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    if (canvas && stage) {
+      const ctx = canvas.getContext('2d', { alpha: true });
+
+      type Node = { x: number; y: number; vx: number; vy: number; s: number };
+      let nodes: Node[] = [];
+      let w = 0;
+      let h = 0;
+      let dpr = 1;
+      let raf = 0;
+      let last = 0;
+      let link = 120;
+      let count = 72;
+      const pointer = { x: 0, y: 0, on: false };
+      const FRAME = 1000 / 30;
+
+      const signal = { r: 232, g: 160, b: 90 };
+
+      function layout() {
+        const coarse = window.matchMedia('(pointer: coarse)').matches;
+        const small = window.matchMedia('(max-width: 859px)').matches;
+        count = small || coarse ? 36 : 86;
+        link = small ? 88 : 128;
+        dpr = Math.min(window.devicePixelRatio || 1, small ? 1.15 : 1.5);
+        w = stage!.clientWidth;
+        h = stage!.clientHeight;
+        canvas!.width = Math.max(1, Math.floor(w * dpr));
+        canvas!.height = Math.max(1, Math.floor(h * dpr));
+        canvas!.style.width = `${w}px`;
+        canvas!.style.height = `${h}px`;
+        ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      function seed() {
+        nodes = Array.from({ length: count }, () => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.16,
+          vy: (Math.random() - 0.5) * 0.16,
+          s: Math.random() < 0.14 ? 2 : 1,
+        }));
+      }
+
+      function tick(t: number) {
+        raf = requestAnimationFrame(tick);
+        if (t - last < FRAME - 0.5) return;
+        last = t;
+        if (!ctx) return;
+        ctx.clearRect(0, 0, w, h);
+
+        for (const n of nodes) {
+          if (pointer.on) {
+            const dx = pointer.x - n.x;
+            const dy = pointer.y - n.y;
+            const d2 = dx * dx + dy * dy;
+            const r = 210;
+            if (d2 < r * r && d2 > 16) {
+              const d = Math.sqrt(d2);
+              const f = (1 - d / r) * 0.045;
+              n.vx += (dx / d) * f;
+              n.vy += (dy / d) * f;
+            }
+          }
+
+          n.x += n.vx;
+          n.y += n.vy;
+          n.vx *= 0.992;
+          n.vy *= 0.992;
+          n.vx += (Math.random() - 0.5) * 0.006;
+          n.vy += (Math.random() - 0.5) * 0.006;
+
+          const sp = Math.hypot(n.vx, n.vy);
+          if (sp > 0.32) {
+            n.vx = (n.vx / sp) * 0.32;
+            n.vy = (n.vy / sp) * 0.32;
+          } else if (sp < 0.04) {
+            n.vx += (Math.random() - 0.5) * 0.02;
+            n.vy += (Math.random() - 0.5) * 0.02;
+          }
+
+          if (n.x < -24) n.x = w + 24;
+          else if (n.x > w + 24) n.x = -24;
+          if (n.y < -24) n.y = h + 24;
+          else if (n.y > h + 24) n.y = -24;
+        }
+
+        ctx.lineWidth = 0.7;
+        const maxD = link * link;
+        for (let i = 0; i < nodes.length; i++) {
+          const a = nodes[i];
+          for (let j = i + 1; j < nodes.length; j++) {
+            const b = nodes[j];
+            const dx = a.x - b.x;
+            const dy = a.y - b.y;
+            const d2 = dx * dx + dy * dy;
+            if (d2 < maxD) {
+              const alpha = (1 - Math.sqrt(d2) / link) * 0.28;
+              ctx.strokeStyle = `rgba(${signal.r}, ${signal.g}, ${signal.b}, ${alpha})`;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        for (const n of nodes) {
+          ctx.fillStyle = `rgba(${signal.r}, ${signal.g}, ${signal.b}, 0.82)`;
+          ctx.fillRect(n.x - n.s / 2, n.y - n.s / 2, n.s, n.s);
+        }
+      }
+
+      function start() {
+        if (reduceMq.matches) {
+          stop();
+          ctx?.clearRect(0, 0, w, h);
+          return;
+        }
+        layout();
+        seed();
+        if (!raf) raf = requestAnimationFrame(tick);
+      }
+
+      function stop() {
+        if (raf) {
+          cancelAnimationFrame(raf);
+          raf = 0;
+        }
+      }
+
+      function onPointer(e: PointerEvent) {
+        if (e.pointerType === 'touch') return;
+        const rect = stage!.getBoundingClientRect();
+        pointer.x = e.clientX - rect.left;
+        pointer.y = e.clientY - rect.top;
+        pointer.on = true;
+      }
+
+      window.addEventListener(
+        'resize',
+        () => {
+          if (reduceMq.matches) return;
+          layout();
+          if (nodes.length !== count) seed();
+        },
+        { passive: true },
+      );
+
+      stage.addEventListener('pointermove', onPointer, { passive: true });
+      stage.addEventListener(
+        'pointerleave',
+        () => {
+          pointer.on = false;
+        },
+        { passive: true },
+      );
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stop();
+        else start();
       });
+
+      reduceMq.addEventListener('change', start);
+      start();
     }
   </script>
 </Layout>
