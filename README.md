@@ -2,14 +2,14 @@
 
 Personal site for Ricky Cheuk (https://rickycheuk.com): software engineer · AI. Static Astro plus TypeScript. No backend, no auth.
 
-The page is a locked 100svh living interface: a full-viewport generative data field (canvas points and proximity lines over a CSS lattice, grain, and scan) is the atmosphere. Identity sits on it as a HUD plate — Newsreader name, role, tagline, a small cropped photograph, and Voyas / Noozz / gitweb as an instrument list — not film credits, not a poster wordmark, and not reused GIF footage.
+The page is a locked 100svh brand landing: Newsreader wordmark and italic headline sit on a deep pine field, with a stippled night landscape filling the lower viewport. Outfit for the small nav, a single coral accent, and a CSS grain overlay over the whole stage — not a dashboard, not a particle field, and not reused GIF footage.
 
 ## Stack
 
 - Astro (static output)
 - TypeScript
 - Tailwind CSS v4 (preflight) plus a single composition stylesheet
-- IBM Plex Mono (UI) and Newsreader (name)
+- Newsreader (wordmark and headline) and Outfit (nav / UI)
 
 ## Requirements
 
@@ -29,9 +29,9 @@ Preview the production build with the package script named preview.
 
 ## Layout
 
-src/assets — portrait, logo, project marks (optimized; not hotlinked)
+src/assets/art — illustrated hero landscape and portrait stamp (optimized; not hotlinked)
 src/layouts — document shell, SEO, Open Graph
-src/pages/index.astro — single page and field script
+src/pages/index.astro — single landing page
 src/styles/global.css — the composition
 public/ — favicon, apple-touch icon, og.jpg, robots.txt, sitemap.xml, .nojekyll
 
