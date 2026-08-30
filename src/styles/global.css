@@ -2,11 +2,11 @@
 
 :root {
   color-scheme: dark;
-  --stage: #152238;
-  --fg: #f3eadc;
-  --mute: rgb(243 234 220 / 0.64);
-  --dim: rgb(243 234 220 / 0.38);
-  --gold: #d4a05a;
+  --stage: #0b1c3a;
+  --fg: #f4eee3;
+  --mute: rgb(244 238 227 / 0.62);
+  --dim: rgb(244 238 227 / 0.38);
+  --signal: #ff4b3a;
   --serif: "Newsreader Variable", "Newsreader", "Times New Roman", Times, serif;
   --sans: "Outfit Variable", "Outfit", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -51,12 +51,12 @@ a {
 }
 
 ::selection {
-  background: var(--gold);
-  color: var(--stage);
+  background: var(--signal);
+  color: var(--fg);
 }
 
 :focus-visible {
-  outline: 1px solid var(--gold);
+  outline: 1px solid var(--signal);
   outline-offset: 3px;
 }
 
@@ -74,6 +74,8 @@ a {
 
 .stage {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100svh;
   max-height: 100svh;
@@ -83,8 +85,9 @@ a {
 }
 
 .world {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
   z-index: 0;
   overflow: hidden;
 }
@@ -97,7 +100,7 @@ a {
   height: 100%;
   max-width: none;
   object-fit: cover;
-  object-position: 50% 18%;
+  object-position: center bottom;
 }
 
 .world::after {
@@ -106,13 +109,13 @@ a {
   left: 0;
   right: 0;
   top: 0;
-  height: 22%;
+  height: 32%;
   z-index: 1;
   pointer-events: none;
   background: linear-gradient(
     180deg,
     var(--stage) 0%,
-    rgb(21 34 56 / 0.42) 52%,
+    rgb(11 28 58 / 0.58) 46%,
     transparent 100%
   );
 }
@@ -132,30 +135,32 @@ a {
 .mast {
   position: relative;
   z-index: 5;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0;
+  flex: 0 0 auto;
   padding: max(0.5rem, env(safe-area-inset-top)) max(0.45rem, env(safe-area-inset-right)) 0.35rem
     max(0.45rem, env(safe-area-inset-left));
+}
+
+.brand {
+  order: -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  text-align: center;
 }
 
 .works,
 .social {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
+  justify-content: center;
   max-width: 100%;
-}
-
-.works {
-  justify-self: start;
-  justify-content: flex-start;
-}
-
-.social {
-  justify-self: end;
-  justify-content: flex-end;
 }
 
 .works a,
@@ -183,16 +188,7 @@ a {
 
 .works a:hover,
 .social a:hover {
-  color: var(--gold);
-}
-
-.brand {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
-  text-align: center;
+  color: var(--signal);
 }
 
 .wordmark {
@@ -225,13 +221,6 @@ a {
 }
 
 @media (max-width: 719px) {
-  .world-img,
-  .world img,
-  .world picture,
-  .world picture img {
-    object-position: 50% 12%;
-  }
-
   .works a,
   .social a {
     padding: 0 0.32rem;
@@ -247,8 +236,27 @@ a {
 
 @media (min-width: 720px) {
   .mast {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 0.35rem;
     padding: max(0.55rem, env(safe-area-inset-top)) max(0.85rem, env(safe-area-inset-right)) 0.4rem
       max(0.85rem, env(safe-area-inset-left));
+  }
+
+  .brand {
+    order: 0;
+    justify-self: center;
+  }
+
+  .works {
+    justify-self: start;
+    justify-content: flex-start;
+  }
+
+  .social {
+    justify-self: end;
+    justify-content: flex-end;
   }
 
   .wordmark {
@@ -270,6 +278,16 @@ a {
   .role {
     font-size: 11px;
     letter-spacing: 0.18em;
+  }
+
+  .world {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    flex: none;
+    height: 64%;
   }
 }
 

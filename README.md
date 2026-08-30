@@ -2,7 +2,7 @@
 
 Personal site for Ricky Cheuk (https://rickycheuk.com): big data · AI. Static Astro plus TypeScript. No backend, no auth.
 
-The page is a locked 100svh brand landing: one Newsreader name in the mast, a dusk illustrated portrait filling the stage, Outfit for the small nav, warm gold only on hover, and a light CSS grain overlay — the art is the whole world.
+The page is a locked 100svh brand landing: a thin mast with one Newsreader name, Outfit for the small nav, and an illustrated world scene occupying the lower part of the viewport. Cream type on cobalt, coral only on hover, and a light CSS grain overlay.
 
 ## Stack
 
@@ -29,7 +29,7 @@ Preview the production build with the package script named preview.
 
 ## Layout
 
-src/assets/art/ricky-illus.png — stippled illustrated portrait that fills the stage
+src/assets/art/world.png — illustrated scene (sky, sunburst, grid floor, mountains) in the lower viewport
 src/layouts — document shell, SEO, Open Graph
 src/pages/index.astro — single landing page
 src/styles/global.css — the composition
