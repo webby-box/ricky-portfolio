@@ -2,13 +2,11 @@
 
 :root {
   color-scheme: dark;
-  --ground: #1a1410;
-  --fg: #f2eadc;
-  --mute: rgb(242 234 220 / 0.62);
-  --dim: rgb(242 234 220 / 0.38);
-  --gold: #c4a06a;
-  --tan: #cbb07a;
-  --signal: #e24a32;
+  --stage: #0b1c3a;
+  --fg: #f4eee3;
+  --mute: rgb(244 238 227 / 0.62);
+  --dim: rgb(244 238 227 / 0.38);
+  --signal: #ff4b3a;
   --serif: "Newsreader Variable", "Newsreader", "Times New Roman", Times, serif;
   --sans: "Outfit Variable", "Outfit", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -28,7 +26,7 @@ body {
   height: 100%;
   min-height: 100svh;
   max-height: 100svh;
-  background: var(--ground);
+  background: var(--stage);
   color: var(--fg);
   overflow: hidden;
   overflow-x: hidden;
@@ -71,7 +69,7 @@ a {
   max-height: 100svh;
   overflow: hidden;
   overflow-x: hidden;
-  background: var(--ground);
+  background: var(--stage);
 }
 
 .world {
@@ -80,25 +78,24 @@ a {
   min-height: 0;
   z-index: 0;
   overflow: hidden;
-  isolation: isolate;
-  background: var(--tan);
-}
-
-.world picture {
-  width: 100%;
-  height: 100%;
 }
 
 .world-img,
 .world img,
+.world picture {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
 .world picture img {
   width: 100%;
   height: 100%;
   max-width: none;
   object-fit: cover;
-  object-position: 50% 24%;
-  filter: grayscale(1) contrast(1.22);
-  mix-blend-mode: multiply;
+  object-position: center bottom;
 }
 
 .world::after {
@@ -107,10 +104,43 @@ a {
   left: 0;
   right: 0;
   top: 0;
-  height: 38%;
+  height: 32%;
   z-index: 1;
   pointer-events: none;
-  background: linear-gradient(180deg, var(--ground) 0%, rgb(26 20 16 / 0.7) 40%, transparent 100%);
+  background: linear-gradient(
+    180deg,
+    var(--stage) 0%,
+    rgb(11 28 58 / 0.58) 46%,
+    transparent 100%
+  );
+}
+
+.standee-wrap {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 0;
+  height: 42svh;
+  width: auto;
+  pointer-events: none;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.standee-wrap picture,
+.standee-wrap img,
+.standee {
+  height: 100%;
+  width: auto;
+  max-width: min(92vw, 52svh);
+  object-fit: contain;
+  object-position: center bottom;
+  background: transparent;
+  filter: none;
+  mix-blend-mode: normal;
+  box-shadow: none;
 }
 
 .grain {
@@ -118,7 +148,7 @@ a {
   inset: 0;
   z-index: 8;
   pointer-events: none;
-  opacity: 0.19;
+  opacity: 0.22;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   background-size: 180px 180px;
@@ -173,6 +203,25 @@ a {
   color: var(--signal);
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  order: -1;
+}
+
+.wordmark {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  font-optical-sizing: auto;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--fg);
+}
+
 .copy {
   position: relative;
   z-index: 5;
@@ -181,14 +230,14 @@ a {
   align-items: center;
   flex: 0 0 auto;
   width: 100%;
-  padding: 0.45rem max(1rem, env(safe-area-inset-right)) 0.8rem max(1rem, env(safe-area-inset-left));
+  padding: 0.35rem max(1rem, env(safe-area-inset-right)) 0.7rem max(1rem, env(safe-area-inset-left));
   text-align: center;
 }
 
 .headline {
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(2.6rem, 7vw, 4.6rem);
+  font-size: clamp(2.4rem, 8vw, 4.2rem);
   font-weight: 400;
   font-optical-sizing: auto;
   letter-spacing: -0.03em;
@@ -197,11 +246,11 @@ a {
 }
 
 .role {
-  margin: 0.55rem 0 0;
+  margin: 0.5rem 0 0;
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.16em;
-  color: var(--gold);
+  color: var(--mute);
 }
 
 @keyframes grain-shift {
@@ -213,10 +262,18 @@ a {
   }
 }
 
+@media (max-width: 719px) {
+  .standee-wrap {
+    height: 40svh;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 @media (min-width: 720px) {
   .mast {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
     gap: 0.5rem;
     padding: max(0.45rem, env(safe-area-inset-top)) max(0.7rem, env(safe-area-inset-right)) 0
@@ -228,9 +285,18 @@ a {
     justify-content: flex-start;
   }
 
+  .brand {
+    order: 0;
+    justify-self: center;
+  }
+
   .social {
     justify-self: end;
     justify-content: flex-end;
+  }
+
+  .wordmark {
+    font-size: 1.65rem;
   }
 
   .works a,
@@ -241,7 +307,7 @@ a {
   }
 
   .copy {
-    padding-top: clamp(0.5rem, 2.4vh, 1.8rem);
+    padding-top: clamp(0.5rem, 2.8vh, 2rem);
   }
 
   .world {
@@ -251,14 +317,26 @@ a {
     bottom: 0;
     top: auto;
     flex: none;
-    height: 66%;
+    height: 64%;
   }
 
   .world-img,
   .world img,
   .world picture,
   .world picture img {
-    object-position: 50% 22%;
+    object-position: center bottom;
+  }
+
+  .standee-wrap {
+    height: 48svh;
+    left: 46%;
+    transform: translateX(-50%);
+  }
+
+  .standee-wrap picture,
+  .standee-wrap img,
+  .standee {
+    max-width: min(46vw, 52svh);
   }
 }
 

@@ -2,14 +2,14 @@
 
 Personal site for Ricky Cheuk (https://rickycheuk.com): software engineer · AI. Static Astro plus TypeScript. No backend, no auth.
 
-The page is a locked 100svh print landing: his name in Newsreader sits on an espresso field, with the real portrait filling the lower viewport as a brown-gold halftone still. Outfit for the small nav, muted gold for the role line, coral only on hover, and a CSS grain overlay over the whole stage — not a dashboard, not a particle field, and not reused GIF footage.
+The page is a locked 100svh brand landing: a Newsreader wordmark and name sit on a deep cobalt field, with one dithered illustrated world filling the lower viewport and a real photographic cutout of Ricky standing on the grid. Outfit for the small nav, coral only on hover, and a CSS grain overlay over the whole stage — not a dashboard, not a particle field, and not reused GIF footage.
 
 ## Stack
 
 - Astro (static output)
 - TypeScript
 - Tailwind CSS v4 (preflight) plus a single composition stylesheet
-- Newsreader (name) and Outfit (nav / UI)
+- Newsreader (wordmark and name) and Outfit (nav / UI)
 
 ## Requirements
 
@@ -29,7 +29,7 @@ Preview the production build with the package script named preview.
 
 ## Layout
 
-src/assets/ricky-pfp.webp — real portrait used as the full-bleed print still
+src/assets/art/world.png — illustrated world; src/assets/ricky-pfp.webp — real photographic standee
 src/layouts — document shell, SEO, Open Graph
 src/pages/index.astro — single landing page
 src/styles/global.css — the composition
