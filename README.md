@@ -1,8 +1,8 @@
 # Ricky Cheuk — portfolio
 
-Personal site for Ricky Cheuk (https://rickycheuk.com): software engineer. Static Astro plus TypeScript. No backend, no auth.
+Personal site for Ricky Cheuk (https://rickycheuk.com): software engineer · AI. Static Astro plus TypeScript. No backend, no auth.
 
-One composition: a sharp full-bleed cycling GIF as the picture, die-cut portrait standing in the scene, and a tight credit block with project text links (Voyas, Noozz, gitweb). GitHub and LinkedIn as text. A small control cycles glare → road → box → ripple. Only the active GIF is loaded.
+The page is a black-and-white campaign poster, not a site chrome. A stacked (desktop) / cropped-horizontal (mobile) RICKY wordmark occupies the frame as the brand mark. A single square still holds the looping GIF as a product photograph, with the die-cut portrait standing in front of it, cropped by the square. A lookbook stamp at the bottom lists Voyas, Noozz, gitweb, GitHub, and LinkedIn. Click the square to cycle glare → road → box → ripple. Only the active GIF is loaded.
 
 ## Stack
 
