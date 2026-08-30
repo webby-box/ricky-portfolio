@@ -2,11 +2,11 @@
 
 :root {
   color-scheme: dark;
-  --stage: #16110c;
-  --fg: #f3ead8;
-  --mute: rgb(243 234 216 / 0.62);
-  --dim: rgb(243 234 216 / 0.38);
-  --signal: #c47a32;
+  --stage: #120e16;
+  --fg: #ece4d8;
+  --mute: rgb(236 228 216 / 0.62);
+  --dim: rgb(236 228 216 / 0.38);
+  --signal: #c46a70;
   --serif: "Newsreader Variable", "Newsreader", "Times New Roman", Times, serif;
   --sans: "Outfit Variable", "Outfit", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -100,7 +100,7 @@ a {
   height: 100%;
   max-width: none;
   object-fit: cover;
-  object-position: 32% 88%;
+  object-position: 22% 100%;
 }
 
 .world::after {
@@ -115,7 +115,7 @@ a {
   background: linear-gradient(
     180deg,
     var(--stage) 0%,
-    rgb(22 17 12 / 0.4) 40%,
+    rgb(18 14 22 / 0.42) 40%,
     transparent 100%
   );
 }
@@ -130,8 +130,8 @@ a {
   pointer-events: none;
   background: radial-gradient(
     ellipse at center,
-    rgb(196 122 50 / 0.38),
-    rgb(196 122 50 / 0.1) 42%,
+    rgb(196 106 112 / 0.36),
+    rgb(196 106 112 / 0.1) 42%,
     transparent 72%
   );
   mix-blend-mode: screen;
@@ -253,7 +253,7 @@ a {
   .world img,
   .world picture,
   .world picture img {
-    object-position: 42% 78%;
+    object-position: 28% 100%;
   }
 
   .works a,
@@ -322,7 +322,7 @@ a {
     bottom: 0;
     top: auto;
     flex: none;
-    height: 82%;
+    height: 78%;
   }
 
   .horizon {
