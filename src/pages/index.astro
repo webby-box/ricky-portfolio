@@ -1,12 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import world from '../assets/art/world.png';
-import portrait from '../assets/ricky-pfp.webp';
+import portrait from '../assets/art/ricky-illus.png';
 ---
 
 <Layout>
   <div class="stage">
+    <h1 class="sr-only">Ricky Cheuk</h1>
     <div class="grain" aria-hidden="true"></div>
 
     <header class="mast">
@@ -17,7 +17,8 @@ import portrait from '../assets/ricky-pfp.webp';
       </nav>
 
       <div class="brand">
-        <p class="wordmark" aria-hidden="true">Ricky Cheuk</p>
+        <p class="wordmark">Ricky Cheuk</p>
+        <p class="role">big data · AI</p>
       </div>
 
       <nav class="social" aria-label="Social">
@@ -26,33 +27,16 @@ import portrait from '../assets/ricky-pfp.webp';
       </nav>
     </header>
 
-    <div class="copy">
-      <h1 class="headline">Ricky Cheuk</h1>
-      <p class="role">software · AI</p>
-    </div>
-
     <div class="world" aria-hidden="true">
       <Image
         class="world-img"
-        src={world}
+        src={portrait}
         alt=""
         widths={[720, 1080, 1536, 2160]}
         sizes="100vw"
         quality={82}
         loading="eager"
         fetchpriority="high"
-      />
-    </div>
-
-    <div class="standee-wrap" aria-hidden="true">
-      <Image
-        class="standee"
-        src={portrait}
-        alt=""
-        widths={[480, 800, 1200]}
-        sizes="(min-width: 720px) 36vw, 70vw"
-        quality={84}
-        loading="eager"
       />
     </div>
   </div>

@@ -9,7 +9,7 @@ interface Props {
 }
 
 const title = Astro.props.title ?? 'Ricky Cheuk';
-const description = Astro.props.description ?? 'Ricky Cheuk — software engineer · AI';
+const description = Astro.props.description ?? 'Ricky Cheuk — big data · AI';
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const base = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
@@ -23,10 +23,10 @@ const ogImage = new URL(base + 'og.jpg', Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#0b1c3a" />
+    <meta name="theme-color" content="#152238" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="Ricky,Ricky Cheuk,Software Engineer" />
+    <meta name="keywords" content="Ricky,Ricky Cheuk,big data,AI" />
     <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />

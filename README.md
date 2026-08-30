@@ -1,8 +1,8 @@
 # Ricky Cheuk — portfolio
 
-Personal site for Ricky Cheuk (https://rickycheuk.com): software engineer · AI. Static Astro plus TypeScript. No backend, no auth.
+Personal site for Ricky Cheuk (https://rickycheuk.com): big data · AI. Static Astro plus TypeScript. No backend, no auth.
 
-The page is a locked 100svh brand landing: a Newsreader wordmark and name sit on a deep cobalt field, with one dithered illustrated world filling the lower viewport and a real photographic cutout of Ricky standing on the grid. Outfit for the small nav, coral only on hover, and a CSS grain overlay over the whole stage — not a dashboard, not a particle field, and not reused GIF footage.
+The page is a locked 100svh brand landing: one Newsreader name in the mast, a dusk illustrated portrait filling the stage, Outfit for the small nav, warm gold only on hover, and a light CSS grain overlay — the art is the whole world.
 
 ## Stack
 
@@ -29,7 +29,7 @@ Preview the production build with the package script named preview.
 
 ## Layout
 
-src/assets/art/world.png — illustrated world; src/assets/ricky-pfp.webp — real photographic standee
+src/assets/art/ricky-illus.png — stippled illustrated portrait that fills the stage
 src/layouts — document shell, SEO, Open Graph
 src/pages/index.astro — single landing page
 src/styles/global.css — the composition
