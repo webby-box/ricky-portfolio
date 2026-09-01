@@ -2,30 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import hero from '../assets/art/hero.png';
+import portrait from '../assets/ricky-pfp.webp';
 ---
 
 <Layout>
   <div class="stage">
     <h1 class="sr-only">Ricky Cheuk</h1>
-    <div class="grain" aria-hidden="true"></div>
-    <div class="glow" aria-hidden="true"></div>
-
-    <header class="mast">
-      <nav class="works" aria-label="Projects">
-        <a href="https://voyas.ai" target="_blank" rel="noreferrer">Voyas</a>
-        <a href="https://noozz.ai" target="_blank" rel="noreferrer">Noozz</a>
-        <a href="https://gitweb.dev" target="_blank" rel="noreferrer">gitweb</a>
-      </nav>
-      <nav class="social" aria-label="Social">
-        <a href="https://github.com/rickycheuk" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/rickycheuk/" target="_blank" rel="noreferrer">LinkedIn</a>
-      </nav>
-    </header>
-
-    <div class="identity">
-      <p class="wordmark">Ricky Cheuk</p>
-      <p class="role">big data · AI</p>
-    </div>
 
     <div class="world" aria-hidden="true">
       <Image
@@ -34,10 +16,43 @@ import hero from '../assets/art/hero.png';
         alt=""
         widths={[720, 1080, 1536, 2160]}
         sizes="100vw"
-        quality={82}
+        quality={85}
         loading="eager"
         fetchpriority="high"
       />
+      <div class="beams"></div>
+      <div class="veil"></div>
+    </div>
+
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="mast">
+      <div class="brand">
+        <p class="wordmark">Ricky Cheuk</p>
+        <p class="role">big data · AI</p>
+      </div>
+      <nav class="social" aria-label="Social">
+        <a href="https://github.com/rickycheuk" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/rickycheuk/" target="_blank" rel="noreferrer">LinkedIn</a>
+      </nav>
+    </header>
+
+    <div class="floor">
+      <Image
+        class="standee"
+        src={portrait}
+        alt="Ricky Cheuk"
+        widths={[240, 360, 480]}
+        sizes="(max-width: 719px) 42vw, 220px"
+        quality={88}
+        loading="eager"
+      />
+
+      <nav class="works" aria-label="Projects">
+        <a href="https://voyas.ai" target="_blank" rel="noreferrer">Voyas</a>
+        <a href="https://noozz.ai" target="_blank" rel="noreferrer">Noozz</a>
+        <a href="https://gitweb.dev" target="_blank" rel="noreferrer">gitweb</a>
+      </nav>
     </div>
   </div>
 </Layout>
