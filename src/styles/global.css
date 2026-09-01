@@ -2,11 +2,11 @@
 
 :root {
   color-scheme: dark;
-  --stage: #120e16;
-  --fg: #ece4d8;
-  --mute: rgb(236 228 216 / 0.62);
-  --dim: rgb(236 228 216 / 0.38);
-  --signal: #c46a70;
+  --stage: #69adbd;
+  --fg: #f7f4ea;
+  --mute: rgb(247 244 234 / 0.86);
+  --dim: rgb(247 244 234 / 0.55);
+  --signal: #c4453a;
   --serif: "Newsreader Variable", "Newsreader", "Times New Roman", Times, serif;
   --sans: "Outfit Variable", "Outfit", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -85,9 +85,8 @@ a {
 }
 
 .world {
-  position: relative;
-  flex: 1 1 auto;
-  min-height: 0;
+  position: absolute;
+  inset: 0;
   z-index: 0;
   overflow: hidden;
 }
@@ -100,7 +99,7 @@ a {
   height: 100%;
   max-width: none;
   object-fit: cover;
-  object-position: 22% 100%;
+  object-position: center 22%;
 }
 
 .world::after {
@@ -109,33 +108,19 @@ a {
   left: 0;
   right: 0;
   top: 0;
-  height: 18%;
+  height: 28%;
   z-index: 1;
   pointer-events: none;
   background: linear-gradient(
     180deg,
-    var(--stage) 0%,
-    rgb(18 14 22 / 0.42) 40%,
+    rgb(80 140 158 / 0.42) 0%,
+    rgb(80 140 158 / 0.12) 55%,
     transparent 100%
   );
 }
 
 .horizon {
-  position: absolute;
-  z-index: 1;
-  left: 52%;
-  bottom: 22%;
-  width: min(48vw, 28rem);
-  height: min(28vh, 16rem);
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse at center,
-    rgb(196 106 112 / 0.36),
-    rgb(196 106 112 / 0.1) 42%,
-    transparent 72%
-  );
-  mix-blend-mode: screen;
-  animation: glow-pulse 8s ease-in-out infinite;
+  display: none;
 }
 
 .grain {
@@ -143,8 +128,8 @@ a {
   inset: 0;
   z-index: 8;
   pointer-events: none;
-  opacity: 0.16;
-  mix-blend-mode: overlay;
+  opacity: 0.12;
+  mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   background-size: 180px 180px;
   animation: grain-shift 32s linear infinite;
@@ -193,6 +178,7 @@ a {
   font-weight: 400;
   letter-spacing: 0.12em;
   color: var(--mute);
+  text-shadow: 0 1px 8px rgb(40 90 110 / 0.45);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -212,12 +198,13 @@ a {
 .wordmark {
   margin: 0;
   font-family: var(--serif);
-  font-size: 1.35rem;
+  font-size: 1.45rem;
   font-weight: 400;
   font-optical-sizing: auto;
   letter-spacing: -0.02em;
   line-height: 1.05;
   color: var(--fg);
+  text-shadow: 0 1px 12px rgb(40 90 110 / 0.55);
 }
 
 .role {
@@ -227,16 +214,7 @@ a {
   font-weight: 400;
   letter-spacing: 0.16em;
   color: var(--mute);
-}
-
-@keyframes glow-pulse {
-  0%,
-  100% {
-    opacity: 0.42;
-  }
-  50% {
-    opacity: 0.92;
-  }
+  text-shadow: 0 1px 8px rgb(40 90 110 / 0.45);
 }
 
 @keyframes grain-shift {
@@ -253,7 +231,7 @@ a {
   .world img,
   .world picture,
   .world picture img {
-    object-position: 28% 100%;
+    object-position: center 32%;
   }
 
   .works a,
@@ -295,7 +273,7 @@ a {
   }
 
   .wordmark {
-    font-size: 1.65rem;
+    font-size: 1.75rem;
   }
 
   .works a,
@@ -315,29 +293,16 @@ a {
     letter-spacing: 0.18em;
   }
 
-  .world {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: auto;
-    flex: none;
-    height: 78%;
-  }
-
-  .horizon {
-    left: 48%;
-    bottom: 16%;
+  .world-img,
+  .world img,
+  .world picture,
+  .world picture img {
+    object-position: center 18%;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .grain,
-  .horizon {
+  .grain {
     animation: none;
-  }
-
-  .horizon {
-    opacity: 0.55;
   }
 }
