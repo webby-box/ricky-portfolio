@@ -2,11 +2,11 @@
 
 :root {
   color-scheme: light;
-  --stage: #f2e6d4;
-  --ink: #2a1c14;
+  --stage: #f4e8d3;
+  --ink: #1d1b1a;
   --mute: rgb(42 28 20 / 0.62);
   --dim: rgb(42 28 20 / 0.38);
-  --signal: #c45a32;
+  --signal: #c85b43;
   --serif: "Newsreader Variable", "Newsreader", "Times New Roman", Times, serif;
   --sans: "Outfit Variable", "Outfit", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -102,7 +102,7 @@ a {
   height: 100%;
   max-width: none;
   object-fit: cover;
-  object-position: center 35%;
+  object-position: center 55%;
   transform-origin: 50% 40%;
   animation: world-drift 28s ease-in-out infinite alternate;
 }
@@ -291,7 +291,7 @@ a {
   .world img,
   .world picture,
   .world picture img {
-    object-position: center 42%;
+    object-position: center 60%;
   }
 
   .identity {
